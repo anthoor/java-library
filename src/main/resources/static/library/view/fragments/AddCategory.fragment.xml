@@ -1,0 +1,43 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:f="sap.ui.layout.form"
+        xmlns:core="sap.ui.core">
+    <Dialog
+            id="addCategoryDialog"
+            title="Add category">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm id="addCategoryForm"
+                              editable="true"
+                              layout="ResponsiveGridLayout"
+                              labelSpanXL="3"
+                              labelSpanL="3"
+                              labelSpanM="3"
+                              labelSpanS="12"
+                              adjustLabelSpan="false"
+                              emptySpanXL="4"
+                              emptySpanL="4"
+                              emptySpanM="4"
+                              emptySpanS="0"
+                              columnsXL="1"
+                              columnsL="1"
+                              columnsM="1"
+                              singleContainerFullSize="false">
+                    <f:content>
+                        <Label text="Category name"/>
+                        <Input id="categoryName" value="{addCategory>/categoryName}" placeholder="Name of the category"
+                               showSuggestion="true" suggestionItems="{categories>/}">
+                            <suggestionItems>
+                                <core:ListItem text="{categories>categoryName}"/>
+                            </suggestionItems>
+                        </Input>
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="OK" press="onAddCategoryOk"/>
+            <Button text="Cancel" press="onAddCategoryCancel"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

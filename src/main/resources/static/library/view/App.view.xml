@@ -1,0 +1,199 @@
+<mvc:View
+        controllerName="Library.controller.App"
+        displayBlock="true"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns="sap.m">
+    <App id="app">
+        <Page title="Home Library Management System">
+            <IconTabBar
+                    id="idIconTabBarMulti"
+                    expanded="{device>/isNoPhone}"
+                    class="sapUiResponsiveContentPadding">
+                <items>
+                    <IconTabFilter icon="sap-icon://education" key="books" count="Search for" text="Books"
+                                   design="Horizontal">
+                        <Table items="{default>/books}" alternateRowColors="true" autoPopinMode="true"
+                               contextualWidth="Auto">
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Label text="Search for books:" width="10em"/>
+                                    <SearchField id="search_booklist" liveChange="onChange"/>
+                                    <Button text="Add book" icon="sap-icon://add" press="onAddBookPress"/>
+                                </Toolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column importance="High">
+                                    <Text text="Book Title"/>
+                                </Column>
+                                <Column importance="Medium">
+                                    <Text text="Authors"/>
+                                </Column>
+                                <Column importance="Low">
+                                    <Text text="Categories"/>
+                                </Column>
+                                <Column importance="Low">
+                                    <Text text="Publishers"/>
+                                </Column>
+                                <Column importance="Low">
+                                    <Text text="Year of Publication"/>
+                                </Column>
+                                <Column importance="High">
+                                    <Text text="Shelf"/>
+                                </Column>
+                                <Column importance="High">
+                                    <Text text="Row"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <ObjectIdentifier title="{default>title}" text="{default>availability}"/>
+                                        <Text text="{default>authors}"/>
+                                        <Text text="{default>categories}"/>
+                                        <Text text="{default>publishers}"/>
+                                        <Text text="{default>year}"/>
+                                        <Text text="{default>shelf}"/>
+                                        <Text text="{default>row}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                    <IconTabSeparator icon="sap-icon://open-command-field"/>
+                    <IconTabFilter icon="sap-icon://learning-assistant" key="leases" count="Manage" text="Leases"
+                                   design="Horizontal">
+                        <Table id="table" items="{lease>/leases}" alternateRowColors="true" autoPopinMode="true"
+                               contextualWidth="Auto">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <ToolbarSpacer/>
+                                    <Button icon="sap-icon://action" text="Lease a book" press="showLeaseBookDialog"/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column importance="High">
+                                    <Text text="Book Title"/>
+                                </Column>
+                                <Column importance="Medium">
+                                    <Text text="Authors"/>
+                                </Column>
+                                <Column importance="Low">
+                                    <Text text="Publishers"/>
+                                </Column>
+                                <Column importance="Low">
+                                    <Text text="Shelf"/>
+                                </Column>
+                                <Column importance="Low">
+                                    <Text text="Row"/>
+                                </Column>
+                                <Column importance="High">
+                                    <Text text="Leased By"/>
+                                </Column>
+                                <Column importance="Medium">
+                                    <Text text="Leased On"/>
+                                </Column>
+                                <Column importance="Low">
+                                    <Text text="Returned On"/>
+                                </Column>
+                                <Column importance="High">
+                                    <Text text="Actions"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{lease>book/title}" wrapping="false"/>
+                                        <Text text="{lease>book/authors}"/>
+                                        <Text text="{lease>book/publishers}"/>
+                                        <Text text="{lease>book/shelf}"/>
+                                        <Text text="{lease>book/row}"/>
+                                        <Text text="{lease>leasedPerson}" wrapping="false"/>
+                                        <Text text="{lease>leasedOn}"/>
+                                        <Text text="{lease>returnedOn}"/>
+                                        <Button icon="sap-icon://cause" press="handleActionPress"
+                                                text="Mark as returned" visible="{= ${lease>returnedOn} === '' }"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                    <IconTabSeparator icon="sap-icon://open-command-field"/>
+                    <IconTabFilter icon="sap-icon://customer-briefing" key="authpub" count="Master"
+                                   text="Data" design="Horizontal">
+                        <HBox>
+                            <VBox>
+                                <Table items="{authors>/}" alternateRowColors="true" autoPopinMode="true"
+                                       contextualWidth="Auto" width="99%">
+                                    <headerToolbar>
+                                        <OverflowToolbar>
+                                            <ToolbarSpacer/>
+                                            <Button text="Add author" icon="sap-icon://add" press="onAddAuthorPress"/>
+                                        </OverflowToolbar>
+                                    </headerToolbar>
+                                    <columns>
+                                        <Column>
+                                            <Text text="Author Name"/>
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{authors>authorName}"/>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </VBox>
+                            <VBox>
+                                <Table items="{publishers>/}" alternateRowColors="true" autoPopinMode="true"
+                                       contextualWidth="Auto" width="99%">
+                                    <headerToolbar>
+                                        <OverflowToolbar>
+                                            <ToolbarSpacer/>
+                                            <Button text="Add publisher" icon="sap-icon://add" press="onAddPublisherPress"/>
+                                        </OverflowToolbar>
+                                    </headerToolbar>
+                                    <columns>
+                                        <Column>
+                                            <Text text="Publisher Name"/>
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{publishers>publisherName}"/>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </VBox>
+                            <VBox>
+                                <Table items="{categories>/}" alternateRowColors="true" autoPopinMode="true"
+                                       contextualWidth="Auto" width="99%">
+                                    <headerToolbar>
+                                        <OverflowToolbar>
+                                            <ToolbarSpacer/>
+                                            <Button text="Add category" icon="sap-icon://add" press="onAddCategoryPress"/>
+                                        </OverflowToolbar>
+                                    </headerToolbar>
+                                    <columns>
+                                        <Column>
+                                            <Text text="Category Name"/>
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{categories>categoryName}"/>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </VBox>
+                        </HBox>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </Page>
+    </App>
+</mvc:View>

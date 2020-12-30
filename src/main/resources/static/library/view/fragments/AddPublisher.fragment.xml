@@ -1,0 +1,43 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:f="sap.ui.layout.form"
+        xmlns:core="sap.ui.core">
+    <Dialog
+            id="addPublisherDialog"
+            title="Add publisher">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm id="addPublisherForm"
+                              editable="true"
+                              layout="ResponsiveGridLayout"
+                              labelSpanXL="3"
+                              labelSpanL="3"
+                              labelSpanM="3"
+                              labelSpanS="12"
+                              adjustLabelSpan="false"
+                              emptySpanXL="4"
+                              emptySpanL="4"
+                              emptySpanM="4"
+                              emptySpanS="0"
+                              columnsXL="1"
+                              columnsL="1"
+                              columnsM="1"
+                              singleContainerFullSize="false">
+                    <f:content>
+                        <Label text="Publisher name"/>
+                        <Input id="publisherName" value="{addPublisher>/publisherName}" placeholder="Name of the publisher"
+                               showSuggestion="true" suggestionItems="{publishers>/}">
+                            <suggestionItems>
+                                <core:ListItem text="{publishers>publisherName}"/>
+                            </suggestionItems>
+                        </Input>
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="OK" press="onAddPublisherOk"/>
+            <Button text="Cancel" press="onAddPublisherCancel"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

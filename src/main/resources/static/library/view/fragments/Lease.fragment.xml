@@ -1,0 +1,54 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:f="sap.ui.layout.form"
+        xmlns:core="sap.ui.core">
+    <Dialog
+            id="leaseDialog"
+            contentWidth="50%"
+            title="Lease a book">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm id="leaseBookForm"
+                              editable="true"
+                              layout="ResponsiveGridLayout"
+                              labelSpanXL="3"
+                              labelSpanL="3"
+                              labelSpanM="3"
+                              labelSpanS="12"
+                              adjustLabelSpan="false"
+                              emptySpanXL="4"
+                              emptySpanL="4"
+                              emptySpanM="4"
+                              emptySpanS="0"
+                              columnsXL="1"
+                              columnsL="1"
+                              columnsM="1"
+                              singleContainerFullSize="false">
+                    <f:content>
+                        <Label text="Book title"/>
+                        <ComboBox id="bookId" selectedKey="{leaseBook>/bookId}" items="{availableBooks>/availableBooks}">
+                            <core:Item key="{availableBooks>id}" text="{availableBooks>title}"/>
+                        </ComboBox>
+                        <Label text="Leased by"/>
+                        <Input id="leasedBy" value="{leaseBook>/leasedPerson}" placeholder="Who leased the book"
+                               showSuggestion="true" suggestionItems="{uniqueNames>/uniqueNames}">
+                            <suggestionItems>
+                                <core:ListItem text="{uniqueNames>name}"/>
+                            </suggestionItems>
+                        </Input>
+                        <Label text="Leased on"/>
+                        <DatePicker
+                                id="DP1"
+                                value="{leaseBook>/leasedOn}"
+                                placeholder="Enter Date"
+                        />
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="OK" press="onCloseDialog"/>
+            <Button text="Cancel" press="onCancelDialog"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

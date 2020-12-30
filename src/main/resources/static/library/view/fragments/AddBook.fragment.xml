@@ -1,0 +1,64 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:f="sap.ui.layout.form"
+        xmlns:core="sap.ui.core">
+    <Dialog
+            id="addBookDialog"
+            title="Add book">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm id="addBookForm"
+                              editable="true"
+                              layout="ResponsiveGridLayout"
+                              labelSpanXL="3"
+                              labelSpanL="3"
+                              labelSpanM="3"
+                              labelSpanS="12"
+                              adjustLabelSpan="false"
+                              emptySpanXL="4"
+                              emptySpanL="4"
+                              emptySpanM="4"
+                              emptySpanS="0"
+                              columnsXL="1"
+                              columnsL="1"
+                              columnsM="1"
+                              singleContainerFullSize="false">
+                    <f:content>
+                        <Label text="Book title"/>
+                        <Input id="bookTitle" value="{addBook>/bookTitle}" placeholder="Title of the book"
+                               showSuggestion="true" suggestionItems="{/books}">
+                            <suggestionItems>
+                                <core:ListItem text="{bookTitle}"/>
+                            </suggestionItems>
+                        </Input>
+                        <Label text="Authors"/>
+                        <MultiComboBox id="bookAuthor" value="{addBook>/authors}" items="{authors>/}" selectionChange="handleAuthorSelectionChange">
+                            <core:Item key="{authors>authorId}" text="{authors>authorName}"/>
+                        </MultiComboBox>
+                        <Label text="Categories"/>
+                        <MultiComboBox id="bookCategories" value="{addBook>/categories}" items="{categories>/}" selectionChange="handleCategorySelectionChange">
+                            <core:Item key="{categories>categoryId}" text="{categories>categoryName}"/>
+                        </MultiComboBox>
+                        <Label text="Publishers"/>
+                        <MultiComboBox id="bookPublisher" value="{addBook>/publishers}" items="{publishers>/}" selectionChange="handlePublisherSelectionChange">
+                            <core:Item key="{publishers>publisherId}" text="{publishers>publisherName}"/>
+                        </MultiComboBox>
+                        <Label text="Year of publishing"/>
+                        <Input id="bookYear" value="{addBook>/bookYear}" placeholder="Year of publishing of the book"
+                               type="Number"/>
+                        <Label text="Book shelf"/>
+                        <Input id="bookShelf" value="{addBook>/bookShelf}" placeholder="Shelf where book is placed"
+                               type="Number"/>
+                        <Label text="Book row"/>
+                        <Input id="bookRow" value="{addBook>/bookRow}" placeholder="Row where book is placed"
+                               type="Number"/>
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="OK" press="onAddBookOk"/>
+            <Button text="Cancel" press="onAddBookCancel"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

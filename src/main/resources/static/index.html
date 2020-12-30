@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8" />
+    <meta name = "viewport" content = "width=device-width, initial-scale=1" />
+    <title>Home Library Management System</title>
+    <script id = "sap-ui-bootstrap"
+            src = "https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            data-sap-ui-theme = "sap_belize"
+            data-sap-ui-bindingSyntax = "complex"
+            data-sap-ui-libs = "sap.m, sap.ui.layout, sap.tnt"
+            data-sap-ui-compatVersion = "edge"
+            data-sap-ui-resourceroots = '{"Library": "./library"}'
+            data-sap-ui-async = "true"></script>
+    <script>
+        sap.ui.getCore().attachInit(function () {
+            sap.ui.require(["sap/ui/core/mvc/XMLView"], function (XMLView) {
+                XMLView.create({viewName: "Library.view.App"}).then(function (oView) {
+                    oView.placeAt("content");
+                });
+            });
+        });
+    </script>
+</head>
+<body class = "sapUiBody" id = "content"></body>
+</html>
